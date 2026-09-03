@@ -1,0 +1,225 @@
+/* ================================================================
+   AFFIF WAFI — PORTFOLIO ANIMATIONS
+   ================================================================ */
+
+/* ---- Keyframes ---- */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes scrollDown {
+  0% { top: -100%; }
+  100% { top: 100%; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(20px, -30px) scale(1.05); }
+  50% { transform: translate(-10px, 20px) scale(0.95); }
+  75% { transform: translate(15px, 10px) scale(1.02); }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(96, 165, 250, 0); }
+  50% { box-shadow: 0 0 20px 4px rgba(96, 165, 250, 0.1); }
+}
+
+@keyframes dotFloat {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-8px, 8px); }
+}
+
+@keyframes dotFloat2 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(8px, -8px); }
+}
+
+/* ---- Reveal Animation (applied via JS) ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children */
+.reveal:nth-child(2) { transition-delay: 80ms; }
+.reveal:nth-child(3) { transition-delay: 160ms; }
+.reveal:nth-child(4) { transition-delay: 240ms; }
+.reveal:nth-child(5) { transition-delay: 320ms; }
+.reveal:nth-child(6) { transition-delay: 400ms; }
+
+/* ---- Orb Animations ---- */
+.hero-orb--1 {
+  animation: orbFloat 20s ease-in-out infinite;
+}
+
+.hero-orb--2 {
+  animation: orbFloat 25s ease-in-out infinite reverse;
+}
+
+/* ---- Dot Animations ---- */
+.about-image-dot--1 {
+  animation: dotFloat 4s ease-in-out infinite;
+}
+
+.about-image-dot--2 {
+  animation: dotFloat2 5s ease-in-out infinite;
+}
+
+/* ---- Navbar scroll animation ---- */
+.navbar {
+  transition: background 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+}
+
+/* ---- Gradient border animation on service cards ---- */
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 17px;
+  padding: 1px;
+  background: var(--gradient);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out);
+  pointer-events: none;
+}
+
+.service-card {
+  position: relative;
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+/* ---- Nav link underline animation ---- */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--gradient);
+  border-radius: 2px;
+  transition: width 0.3s var(--ease-out), left 0.3s var(--ease-out);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 20px;
+  left: calc(50% - 10px);
+}
+
+/* ---- Skill tag hover glow ---- */
+.skill-tag:hover {
+  box-shadow: 0 0 16px rgba(96, 165, 250, 0.08);
+}
+
+/* ---- Project card image zoom ---- */
+.project-image-placeholder {
+  transition: transform 0.6s var(--ease-out);
+}
+
+.project-card:hover .project-image-placeholder {
+  transform: scale(1.05);
+}
+
+/* ---- Timeline marker pulse on hover ---- */
+.timeline-item:hover .timeline-marker {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* ---- Social link magnetic effect ---- */
+.social-link {
+  transition: all 0.3s var(--ease-spring);
+}
+
+.social-link:hover {
+  transform: translateY(-3px) scale(1.05);
+}
+
+/* ---- Button press ---- */
+.btn:active {
+  transform: scale(0.98) !important;
+}
+
+/* ---- Logo hover ---- */
+.nav-logo .logo-dot {
+  transition: color 0.3s var(--ease-out);
+}
+
+.nav-logo:hover .logo-dot {
+  color: var(--accent-1);
+}
+
+/* ---- Smooth anchor scroll indicator ---- */
+.hero-scroll {
+  animation: fadeIn 1s 2s ease-out both;
+}
+
+/* ---- Page load animation ---- */
+.hero-content > * {
+  animation: fadeInUp 0.8s var(--ease-out) both;
+}
+
+.hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+.hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+.hero-content > *:nth-child(3) { animation-delay: 0.4s; }
+.hero-content > *:nth-child(4) { animation-delay: 0.5s; }
+.hero-content > *:nth-child(5) { animation-delay: 0.6s; }
+.hero-content > *:nth-child(6) { animation-delay: 0.8s; }
