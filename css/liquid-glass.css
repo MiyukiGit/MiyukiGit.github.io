@@ -139,34 +139,10 @@
 }
 
 /* ================================================================
-   SECTION BACKGROUND — background image behind glass cards
-   
-   Applied to body (not hero) so glass surfaces have something
-   colorful to blur against. The hero uses its own video background.
+   SECTION BACKGROUND
    ================================================================ */
-body::before {
-  content: '';
-  position: fixed;
-  top: 100vh;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('../assets/bg2-16x9.jpg') center / cover no-repeat;
-  opacity: 0.12;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Hide the background image behind the hero — hero has its own video */
-.hero {
-  position: relative;
-  z-index: 1;
-}
-
-/* Ensure sections sit above the fixed background */
 .section {
   position: relative;
-  z-index: 1;
 }
 
 /* Subtle radial color accents on sections (layered on top of the image) */
