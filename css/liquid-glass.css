@@ -1,19 +1,36 @@
 /* ================================================================
-   LIQUID GLASS — frosted-glass card system
+   LIQUID GLASS — Apple-inspired glassmorphism
+   
+   Spec:
+   - backdrop-filter: blur(20px) saturate(180%) brightness(1.12)
+   - Semi-transparent surface with white-alpha inner border
+   - Soft diffused drop shadows for depth
+   - High-contrast text (pure white primary)
+   - Interactive states: hover highlight, active press
+   
+   Usage: add class "glass" to any element.
+   Combine with "border-glow-card" for interactive gradient glow.
    ================================================================ */
 
+/* ---- Base glass surface ---- */
 .glass {
   position: relative;
-  background: rgba(22, 27, 34, 0.45);
-  -webkit-backdrop-filter: blur(16px) saturate(140%);
-  backdrop-filter: blur(16px) saturate(140%);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(1.12);
+  backdrop-filter: blur(20px) saturate(180%) brightness(1.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 18px;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.12),
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    0 16px 40px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
   overflow: hidden;
   isolation: isolate;
+  transition: border-color 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
 }
 
-/* top-edge highlight */
+/* ---- Top-edge specular highlight (::before) ---- */
 .glass::before {
   content: '';
   position: absolute;
@@ -21,63 +38,125 @@
   border-radius: inherit;
   background: linear-gradient(
     165deg,
-    rgba(255, 255, 255, 0.08) 0%,
-    rgba(255, 255, 255, 0.02) 40%,
-    transparent 60%
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.05) 30%,
+    transparent 55%
   );
   pointer-events: none;
   z-index: 1;
+  transition: opacity 0.4s var(--ease-out);
 }
 
-/* inner glow rim */
-.glass::after {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: linear-gradient(
-    135deg,
-    rgba(96, 165, 250, 0.12) 0%,
-    transparent 40%,
-    transparent 60%,
-    rgba(167, 139, 250, 0.08) 100%
-  );
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0;
-  transition: opacity 0.5s var(--ease-out);
+/* ---- Hover: intensify border + shadow ---- */
+.glass:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.12),
+    0 4px 12px rgba(0, 0, 0, 0.18),
+    0 20px 50px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
-.glass:hover::after {
+.glass:hover::before {
   opacity: 1;
 }
 
-/* keep inner content above pseudo-elements */
+/* ---- Active press state (reflection) ---- */
+.glass:active,
+.glass.border-glow-card:active {
+  transform: scale(0.992);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.15),
+    0 4px 8px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition-duration: 0.1s;
+}
+
+/* ---- Keep inner content above pseudo-elements ---- */
 .glass > * {
   position: relative;
   z-index: 2;
 }
 
-/* tighter radius variant */
+/* ---- WCAG: ensure text contrast on glass ---- */
+.glass .section-title,
+.glass .project-name,
+.glass .skill-category-title,
+.glass .timeline-title,
+.glass .contact-card-title,
+.glass .stat-number,
+.glass .form-label {
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.glass .timeline-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.glass .about-text,
+.glass .timeline-description,
+.glass .project-description,
+.glass .contact-card-value,
+.glass .stat-label {
+  color: rgba(255, 255, 255, 0.72);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.glass .stat-suffix {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Bump skill-tag contrast inside glass cards */
+.glass .skill-tag {
+  color: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.glass .skill-tag:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ================================================================
+   BORDER-GLOW + GLASS COEXISTENCE
+   
+   Both systems use ::before and ::after. On elements with BOTH
+   classes, border-glow owns the pseudo-elements (gradient border
+   + fill). Glass only provides the surface (blur, bg, border,
+   shadow). The glass ::before highlight is suppressed — border-glow
+   provides superior visual feedback.
+   ================================================================ */
+.glass.border-glow-card::before {
+  content: none;
+}
+
+.glass.border-glow-card::after {
+  content: none;
+}
+
+/* Border-glow cards still get glass surface properties,
+   but they override the bg to be semi-transparent so the
+   backdrop-filter blur is actually visible. */
+.glass.border-glow-card {
+  background: rgba(22, 27, 34, 0.42);
+}
+
+.glass.border-glow-card:hover {
+  background: rgba(22, 27, 34, 0.48);
+}
+
+/* ---- Variants ---- */
 .glass-tight {
   border-radius: 14px;
 }
 
-/* stronger blur variant */
 .glass-heavy {
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
-  backdrop-filter: blur(24px) saturate(160%);
-  background: rgba(22, 27, 34, 0.55);
-}
-
-/* ---- glass + border-glow override ----
-   border-glow.css sets an opaque background; when both classes are
-   present the glass semi-transparent background must win so the
-   backdrop-filter blur is actually visible. */
-.glass.border-glow-card {
-  background: rgba(22, 27, 34, 0.45);
-}
-
-.glass.border-glow-card:hover {
-  background: rgba(22, 27, 34, 0.5);
+  -webkit-backdrop-filter: blur(28px) saturate(200%) brightness(1.15);
+  backdrop-filter: blur(28px) saturate(200%) brightness(1.15);
+  background: rgba(255, 255, 255, 0.07);
 }

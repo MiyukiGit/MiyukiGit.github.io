@@ -1,59 +1,68 @@
 /* ================================================================
-   BORDER GLOW (React Bits) — converted to vanilla CSS
-   Apply class "border-glow-card" to any element to enable it.
+   BORDER GLOW — interactive gradient border + edge glow
+   
+   Apply class "border-glow-card" to enable.
+   JS sets --edge-proximity (0-100) and --cursor-angle via pointermove.
+   
+   Fixes from original:
+   - Default visible gradient border (no cursor required)
+   - Smoother opacity curves
+   - Removed mix-blend-mode: soft-light (invisible on dark bg)
+   - Cleaner stacking with glass coexistence
    ================================================================ */
 
 .border-glow-card {
   --edge-proximity: 0;
   --cursor-angle: 45deg;
-  --edge-sensitivity: 30;
-  --color-sensitivity: calc(var(--edge-sensitivity) + 20);
+  --edge-sensitivity: 25;
+  --color-sensitivity: 40;
   --border-radius: 16px;
   --glow-padding: 18px;
-  --cone-spread: 25;
-  --fill-opacity: 0.5;
+  --cone-spread: 30;
+  --fill-opacity: 0.45;
   --card-bg: #161b22;
 
   position: relative;
   border-radius: var(--border-radius);
   isolation: isolate;
   display: grid;
-  border: 1px solid rgb(255 255 255 / 15%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   background: var(--card-bg);
   overflow: visible;
   box-shadow:
-    rgba(0, 0, 0, 0.1) 0px 1px 2px,
-    rgba(0, 0, 0, 0.1) 0px 2px 4px,
-    rgba(0, 0, 0, 0.1) 0px 4px 8px,
-    rgba(0, 0, 0, 0.1) 0px 8px 16px,
-    rgba(0, 0, 0, 0.1) 0px 16px 32px,
-    rgba(0, 0, 0, 0.1) 0px 32px 64px;
+    0 1px 2px rgba(0, 0, 0, 0.12),
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    0 16px 40px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
 }
 
+.border-glow-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.12),
+    0 4px 12px rgba(0, 0, 0, 0.18),
+    0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* ---- Shared pseudo-element base ---- */
 .border-glow-card::before,
-.border-glow-card::after,
-.border-glow-card > .edge-light {
+.border-glow-card::after {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  transition: opacity 0.25s ease-out;
+  pointer-events: none;
   z-index: -1;
 }
 
-.border-glow-card:not(:hover):not(.sweep-active)::before,
-.border-glow-card:not(:hover):not(.sweep-active)::after,
-.border-glow-card:not(:hover):not(.sweep-active) > .edge-light {
-  opacity: 0;
-  transition: opacity 0.75s ease-in-out;
-}
-
-/* colored mesh-gradient border */
+/* ---- ::before — gradient border ring ---- 
+   Always visible at low opacity; intensifies on cursor proximity.
+   Uses a conic mask to show the ring facing the cursor. */
 .border-glow-card::before {
   border: 1px solid transparent;
   background:
-    linear-gradient(var(--card-bg) 0 100%) padding-box,
-    linear-gradient(rgb(255 255 255 / 0%) 0% 100%) border-box,
+    linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+    linear-gradient(rgba(255, 255, 255, 0%) 0% 100%) border-box,
     var(--gradient-one, radial-gradient(at 80% 55%, hsla(268, 100%, 76%, 1) 0px, transparent 50%)) border-box,
     var(--gradient-two, radial-gradient(at 69% 34%, hsla(349, 100%, 74%, 1) 0px, transparent 50%)) border-box,
     var(--gradient-three, radial-gradient(at 8% 6%, hsla(136, 100%, 78%, 1) 0px, transparent 50%)) border-box,
@@ -63,27 +72,32 @@
     var(--gradient-seven, radial-gradient(at 51% 4%, hsla(12, 100%, 72%, 1) 0px, transparent 50%)) border-box,
     var(--gradient-base, linear-gradient(#60a5fa 0 100%)) border-box;
 
-  opacity: calc((var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity)));
+  /* Baseline 25% visible, peaks at 100% near cursor */
+  opacity: calc(0.25 + 0.75 * clamp(0, (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity)), 1));
 
   -webkit-mask-image:
     conic-gradient(
       from var(--cursor-angle) at center,
       black calc(var(--cone-spread) * 1%),
-      transparent calc((var(--cone-spread) + 15) * 1%),
-      transparent calc((100 - var(--cone-spread) - 15) * 1%),
+      transparent calc((var(--cone-spread) + 18) * 1%),
+      transparent calc((100 - var(--cone-spread) - 18) * 1%),
       black calc((100 - var(--cone-spread)) * 1%)
     );
   mask-image:
     conic-gradient(
       from var(--cursor-angle) at center,
       black calc(var(--cone-spread) * 1%),
-      transparent calc((var(--cone-spread) + 15) * 1%),
-      transparent calc((100 - var(--cone-spread) - 15) * 1%),
+      transparent calc((var(--cone-spread) + 18) * 1%),
+      transparent calc((100 - var(--cone-spread) - 18) * 1%),
       black calc((100 - var(--cone-spread)) * 1%)
     );
+
+  transition: opacity 0.3s ease-out;
 }
 
-/* colored mesh-gradient background fill near edges */
+/* ---- ::after — inner fill bleed ---- 
+   Soft colored glow near the edges. No blend mode — uses normal
+   compositing so colors show on dark backgrounds. */
 .border-glow-card::after {
   border: 1px solid transparent;
   background:
@@ -102,7 +116,7 @@
       transparent 0deg,
       black calc(var(--cone-spread) * 1%),
       black calc((100 - var(--cone-spread)) * 1%),
-      transparent 100%
+      transparent 100deg
     );
   mask-image:
     conic-gradient(
@@ -110,30 +124,43 @@
       transparent 0deg,
       black calc(var(--cone-spread) * 1%),
       black calc((100 - var(--cone-spread)) * 1%),
-      transparent 100%
+      transparent 100deg
     );
 
-  opacity: calc(var(--fill-opacity, 0.5) * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity)));
-  mix-blend-mode: soft-light;
+  /* Baseline 10% visible, peaks at fill-opacity near cursor */
+  opacity: calc(var(--fill-opacity, 0.45) * clamp(0, (var(--edge-proximity) - var(--edge-sensitivity)) / (100 - var(--edge-sensitivity)), 1));
+  transition: opacity 0.3s ease-out;
 }
 
-/* outer glow layer */
+/* ---- Edge light — outer glow halo ---- */
 .border-glow-card > .edge-light {
+  position: absolute;
+  content: "";
   inset: calc(var(--glow-padding) * -1);
+  border-radius: inherit;
   pointer-events: none;
-  z-index: 1;
+  z-index: -2;
 
   -webkit-mask-image:
     conic-gradient(
-      from var(--cursor-angle) at center, black 2.5%, transparent 10%, transparent 90%, black 97.5%
+      from var(--cursor-angle) at center,
+      black 2.5%,
+      transparent 12%,
+      transparent 88%,
+      black 97.5%
     );
   mask-image:
     conic-gradient(
-      from var(--cursor-angle) at center, black 2.5%, transparent 10%, transparent 90%, black 97.5%
+      from var(--cursor-angle) at center,
+      black 2.5%,
+      transparent 12%,
+      transparent 88%,
+      black 97.5%
     );
 
-  opacity: calc((var(--edge-proximity) - var(--edge-sensitivity)) / (100 - var(--edge-sensitivity)));
-  mix-blend-mode: plus-lighter;
+  opacity: calc(clamp(0, (var(--edge-proximity) - var(--edge-sensitivity)) / (100 - var(--edge-sensitivity)), 1) * 0.85);
+  mix-blend-mode: screen;
+  transition: opacity 0.3s ease-out;
 }
 
 .border-glow-card > .edge-light::before {
@@ -142,62 +169,69 @@
   inset: var(--glow-padding);
   border-radius: inherit;
   box-shadow:
-    inset 0 0 0 1px var(--glow-color, hsl(217deg 92% 68% / 100%)),
-    inset 0 0 1px 0 var(--glow-color-60, hsl(217deg 92% 68% / 60%)),
-    inset 0 0 3px 0 var(--glow-color-50, hsl(217deg 92% 68% / 50%)),
-    inset 0 0 6px 0 var(--glow-color-40, hsl(217deg 92% 68% / 40%)),
-    inset 0 0 15px 0 var(--glow-color-30, hsl(217deg 92% 68% / 30%)),
-    inset 0 0 25px 2px var(--glow-color-20, hsl(217deg 92% 68% / 20%)),
-    inset 0 0 50px 2px var(--glow-color-10, hsl(217deg 92% 68% / 10%)),
-    0 0 1px 0 var(--glow-color-60, hsl(217deg 92% 68% / 60%)),
-    0 0 3px 0 var(--glow-color-50, hsl(217deg 92% 68% / 50%)),
-    0 0 6px 0 var(--glow-color-40, hsl(217deg 92% 68% / 40%)),
-    0 0 15px 0 var(--glow-color-30, hsl(217deg 92% 68% / 30%)),
-    0 0 25px 2px var(--glow-color-20, hsl(217deg 92% 68% / 20%)),
-    0 0 50px 2px var(--glow-color-10, hsl(217deg 92% 68% / 10%));
+    inset 0 0 0 1px var(--glow-color, hsl(217 92% 68% / 100%)),
+    inset 0 0 2px 0 var(--glow-color-60, hsl(217 92% 68% / 60%)),
+    inset 0 0 6px 0 var(--glow-color-50, hsl(217 92% 68% / 50%)),
+    inset 0 0 12px 0 var(--glow-color-40, hsl(217 92% 68% / 40%)),
+    inset 0 0 24px 0 var(--glow-color-30, hsl(217 92% 68% / 30%)),
+    inset 0 0 40px 2px var(--glow-color-20, hsl(217 92% 68% / 20%)),
+    0 0 2px 0 var(--glow-color-60, hsl(217 92% 68% / 60%)),
+    0 0 6px 0 var(--glow-color-50, hsl(217 92% 68% / 50%)),
+    0 0 12px 0 var(--glow-color-40, hsl(217 92% 68% / 40%)),
+    0 0 24px 0 var(--glow-color-30, hsl(217 92% 68% / 30%)),
+    0 0 40px 2px var(--glow-color-20, hsl(217 92% 68% / 20%));
 }
 
+/* ---- Inner content wrapper (created by JS) ---- */
 .border-glow-inner {
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: auto;
+  overflow: hidden;
   z-index: 1;
-  transform: translate3d(0, 0, 0.01px);
 }
 
-/* ---- Overrides for the portfolio's project & skill cards ---- */
+/* ================================================================
+   PORTFOLIO OVERRIDES
+   ================================================================ */
+
+/* Project cards */
 .project-card.border-glow-card {
   --card-bg: var(--bg-surface);
   --border-radius: 16px;
   --glow-padding: 14px;
-  --fill-opacity: 0.35;
-  border-color: var(--border);
-  border-radius: 16px;
+  --fill-opacity: 0.3;
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .project-card.border-glow-card:hover {
-  border-color: var(--border-light);
+  border-color: rgba(255, 255, 255, 0.22);
   transform: translateY(-6px);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.12),
+    0 8px 24px rgba(0, 0, 0, 0.2),
+    0 24px 60px rgba(0, 0, 0, 0.15);
 }
 
+.project-card.border-glow-card > .border-glow-inner {
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+/* Skill cards */
 .skill-category.border-glow-card {
   --card-bg: var(--bg-surface);
   --border-radius: 16px;
   --glow-padding: 12px;
-  --fill-opacity: 0.3;
-  border-color: var(--border);
-  border-radius: 16px;
+  --fill-opacity: 0.25;
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .skill-category.border-glow-card:hover {
-  border-color: var(--border-light);
+  border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-4px);
-}
-
-/* The border-glow inner wrapper is flex-column; project cards need
-   their image/info to stack naturally, which flex column provides. */
-.project-card.border-glow-card > .border-glow-inner {
-  overflow: hidden;
-  border-radius: inherit;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.12),
+    0 8px 24px rgba(0, 0, 0, 0.2),
+    0 24px 60px rgba(0, 0, 0, 0.12);
 }
