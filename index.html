@@ -20,6 +20,7 @@
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/liquid-glass.css">
   <link rel="stylesheet" href="css/border-glow.css">
   <link rel="stylesheet" href="css/dock.css">
 </head>
@@ -50,6 +51,9 @@
     <!-- HERO -->
     <section class="hero" id="hero">
       <div class="hero-bg">
+        <video class="bg-video" autoplay muted loop playsinline>
+          <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260809_012548_ef22562c-c0ae-4816-ad9d-f8922af4e6a7.mp4" type="video/mp4" />
+        </video>
         <div class="hero-orb hero-orb--1"></div>
         <div class="hero-orb hero-orb--2"></div>
         <div class="hero-grid"></div>
@@ -119,7 +123,7 @@
             <p class="about-text">
               What sets me apart is my commitment to learning the fundamentals properly before reaching for shortcuts. I don't just build features — I <em>solve problems</em>.
             </p>
-            <div class="about-stats">
+            <div class="about-stats glass">
               <div class="stat">
                 <span class="stat-number" data-target="3">0</span><span class="stat-suffix">+</span>
                 <span class="stat-label">Projects Completed</span>
@@ -146,8 +150,8 @@
           <h2 class="section-title">Skills & Technologies</h2>
           <p class="section-subtitle">Still early — this list will grow as coursework and personal projects continue.</p>
         </div>
-        <div class="skills-grid">
-          <div class="skill-category border-glow-card reveal">
+        <div class="skills-grid reveal-stagger">
+          <div class="skill-category border-glow-card glass reveal">
             <div class="skill-category-header">
               <div class="skill-icon skill-icon--languages">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
@@ -160,7 +164,7 @@
               <span class="skill-tag">Java</span>
             </div>
           </div>
-          <div class="skill-category border-glow-card reveal">
+          <div class="skill-category border-glow-card glass reveal">
             <div class="skill-category-header">
               <div class="skill-icon skill-icon--backend">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
@@ -174,7 +178,7 @@
               <span class="skill-tag">Control Flow & Loops</span>
             </div>
           </div>
-          <div class="skill-category border-glow-card reveal">
+          <div class="skill-category border-glow-card glass reveal">
             <div class="skill-category-header">
               <div class="skill-icon skill-icon--tools">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
@@ -200,9 +204,9 @@
           <h2 class="section-title">Featured Projects</h2>
           <p class="section-subtitle">Coursework projects, built to actually work — not just pass a demo.</p>
         </div>
-        <div class="projects-grid">
+        <div class="projects-grid reveal-stagger">
           <!-- Project 1 -->
-          <article class="project-card border-glow-card reveal">
+          <article class="project-card border-glow-card glass reveal">
             <div class="project-image">
               <div class="project-image-placeholder project-image--1">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
@@ -222,7 +226,7 @@
             </div>
           </article>
           <!-- Project 2 -->
-          <article class="project-card border-glow-card reveal">
+          <article class="project-card border-glow-card glass reveal">
             <div class="project-image">
               <div class="project-image-placeholder project-image--2">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
@@ -242,7 +246,7 @@
             </div>
           </article>
           <!-- Project 3 -->
-          <article class="project-card border-glow-card reveal">
+          <article class="project-card border-glow-card glass reveal">
             <div class="project-image">
               <div class="project-image-placeholder project-image--3">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
@@ -275,7 +279,7 @@
         <div class="timeline">
           <div class="timeline-item reveal">
             <div class="timeline-marker"></div>
-            <div class="timeline-content">
+            <div class="timeline-content glass">
               <span class="timeline-date">2026 — Present</span>
               <h3 class="timeline-title">Bachelor in Computer Science (Software Engineering) Hons.</h3>
               <p class="timeline-subtitle">Multimedia University (MMU)</p>
@@ -284,7 +288,7 @@
           </div>
           <div class="timeline-item reveal">
             <div class="timeline-marker"></div>
-            <div class="timeline-content">
+            <div class="timeline-content glass">
               <span class="timeline-date">2025 — 2026</span>
               <h3 class="timeline-title">Foundation in Engineering and Technology</h3>
               <p class="timeline-subtitle">Kolej MARA Kuala Nerang</p>
@@ -293,7 +297,7 @@
           </div>
           <div class="timeline-item reveal">
             <div class="timeline-marker"></div>
-            <div class="timeline-content">
+            <div class="timeline-content glass">
               <span class="timeline-date">2020 — 2024</span>
               <h3 class="timeline-title">High School</h3>
               <p class="timeline-subtitle">SMK Setia Alam</p>
@@ -313,7 +317,7 @@
           <p class="section-subtitle">Have a project in mind, a question, or just want to connect? I'd love to hear from you.</p>
         </div>
         <div class="contact-grid">
-          <form class="contact-form reveal" id="contact-form" novalidate>
+          <form class="contact-form glass reveal" id="contact-form" novalidate>
             <div class="form-group">
               <label for="name" class="form-label">Name</label>
               <input type="text" id="name" name="name" class="form-input" placeholder="Your name" required autocomplete="name">
@@ -340,7 +344,7 @@
             <div class="form-status" id="form-status"></div>
           </form>
           <div class="contact-info reveal">
-            <div class="contact-card">
+            <div class="contact-card glass">
               <div class="contact-card-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
               </div>
@@ -349,7 +353,7 @@
                 <a href="mailto:affifwafi@gmail.com" class="contact-card-value">affifwafi@gmail.com</a>
               </div>
             </div>
-            <div class="contact-card">
+            <div class="contact-card glass">
               <div class="contact-card-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
               </div>
@@ -358,7 +362,7 @@
                 <a href="https://www.linkedin.com/in/affif-wafi-118b2329a/" target="_blank" rel="noopener noreferrer" class="contact-card-value">linkedin.com/in/affif-wafi-118b2329a</a>
               </div>
             </div>
-            <div class="contact-card">
+            <div class="contact-card glass">
               <div class="contact-card-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
               </div>

@@ -82,21 +82,52 @@
 /* ---- Reveal Animation (applied via JS) ---- */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  transform: translateY(36px) scale(0.97);
+  filter: blur(6px);
+  transition:
+    opacity 0.8s var(--ease-out),
+    transform 0.8s var(--ease-out),
+    filter 0.9s var(--ease-out);
 }
 
 .reveal.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+  filter: blur(0);
 }
 
-/* Stagger children */
-.reveal:nth-child(2) { transition-delay: 80ms; }
-.reveal:nth-child(3) { transition-delay: 160ms; }
-.reveal:nth-child(4) { transition-delay: 240ms; }
-.reveal:nth-child(5) { transition-delay: 320ms; }
-.reveal:nth-child(6) { transition-delay: 400ms; }
+/* directional variants */
+.reveal--left {
+  transform: translateX(-40px) scale(0.97);
+}
+
+.reveal--left.visible {
+  transform: translateX(0) scale(1);
+}
+
+.reveal--right {
+  transform: translateX(40px) scale(0.97);
+}
+
+.reveal--right.visible {
+  transform: translateX(0) scale(1);
+}
+
+.reveal--scale {
+  transform: scale(0.92);
+}
+
+.reveal--scale.visible {
+  transform: scale(1);
+}
+
+/* stagger children inside grids */
+.reveal-stagger > .reveal:nth-child(1) { transition-delay: 0ms; }
+.reveal-stagger > .reveal:nth-child(2) { transition-delay: 100ms; }
+.reveal-stagger > .reveal:nth-child(3) { transition-delay: 200ms; }
+.reveal-stagger > .reveal:nth-child(4) { transition-delay: 300ms; }
+.reveal-stagger > .reveal:nth-child(5) { transition-delay: 400ms; }
+.reveal-stagger > .reveal:nth-child(6) { transition-delay: 500ms; }
 
 /* ---- Orb Animations ---- */
 .hero-orb--1 {

@@ -1,0 +1,83 @@
+/* ================================================================
+   LIQUID GLASS — frosted-glass card system
+   ================================================================ */
+
+.glass {
+  position: relative;
+  background: rgba(22, 27, 34, 0.45);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 18px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* top-edge highlight */
+.glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 40%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* inner glow rim */
+.glass::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(96, 165, 250, 0.12) 0%,
+    transparent 40%,
+    transparent 60%,
+    rgba(167, 139, 250, 0.08) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-out);
+}
+
+.glass:hover::after {
+  opacity: 1;
+}
+
+/* keep inner content above pseudo-elements */
+.glass > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* tighter radius variant */
+.glass-tight {
+  border-radius: 14px;
+}
+
+/* stronger blur variant */
+.glass-heavy {
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  backdrop-filter: blur(24px) saturate(160%);
+  background: rgba(22, 27, 34, 0.55);
+}
+
+/* ---- glass + border-glow override ----
+   border-glow.css sets an opaque background; when both classes are
+   present the glass semi-transparent background must win so the
+   backdrop-filter blur is actually visible. */
+.glass.border-glow-card {
+  background: rgba(22, 27, 34, 0.45);
+}
+
+.glass.border-glow-card:hover {
+  background: rgba(22, 27, 34, 0.5);
+}

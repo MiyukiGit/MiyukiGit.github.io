@@ -17,7 +17,6 @@
   position: relative;
   border-radius: var(--border-radius);
   isolation: isolate;
-  transform: translate3d(0, 0, 0.01px);
   display: grid;
   border: 1px solid rgb(255 255 255 / 15%);
   background: var(--card-bg);
@@ -164,6 +163,7 @@
   position: relative;
   overflow: auto;
   z-index: 1;
+  transform: translate3d(0, 0, 0.01px);
 }
 
 /* ---- Overrides for the portfolio's project & skill cards ---- */
