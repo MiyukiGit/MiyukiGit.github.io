@@ -67,10 +67,12 @@
         var rect = card.getBoundingClientRect();
         var x = e.clientX - rect.left;
         var y = e.clientY - rect.top;
-        var edge = getEdgeProximity(card, x, y);
-        var angle = getCursorAngle(card, x, y);
-        card.style.setProperty('--edge-proximity', (edge * 100).toFixed(3));
-        card.style.setProperty('--cursor-angle', angle.toFixed(3) + 'deg');
+        requestAnimationFrame(function () {
+          var edge = getEdgeProximity(card, x, y);
+          var angle = getCursorAngle(card, x, y);
+          card.style.setProperty('--edge-proximity', (edge * 100).toFixed(3));
+          card.style.setProperty('--cursor-angle', angle.toFixed(3) + 'deg');
+        });
       });
     });
   }
@@ -88,8 +90,8 @@
     var panel = document.querySelector('.dock-panel');
     if (!panel) return;
 
-    var base = 48;
-    var magnification = 72;
+    var base = 36;
+    var magnification = 56;
     var distance = 200;
     var items = Array.prototype.slice.call(panel.querySelectorAll('.dock-item'));
 
