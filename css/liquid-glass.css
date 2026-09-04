@@ -147,9 +147,12 @@
 body::before {
   content: '';
   position: fixed;
-  inset: 0;
-  background: url('../assets/background-16x9.jpg') center / cover no-repeat;
-  opacity: 0.3;
+  top: 100vh;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('../assets/bg2-16x9.jpg') center / cover no-repeat;
+  opacity: 0.12;
   pointer-events: none;
   z-index: 0;
 }
