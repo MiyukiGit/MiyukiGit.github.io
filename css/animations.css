@@ -51,24 +51,6 @@
   }
 }
 
-@keyframes orbFloat {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(20px, -30px) scale(1.05); }
-  50% { transform: translate(-10px, 20px) scale(0.95); }
-  75% { transform: translate(15px, 10px) scale(1.02); }
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-@keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(96, 165, 250, 0); }
-  50% { box-shadow: 0 0 20px 4px rgba(96, 165, 250, 0.1); }
-}
-
 @keyframes dotFloat {
   0%, 100% { transform: translate(0, 0); }
   50% { transform: translate(-8px, 8px); }
@@ -79,11 +61,16 @@
   50% { transform: translate(8px, -8px); }
 }
 
+@keyframes pulsePigment {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(155, 52, 24, 0); }
+  50% { box-shadow: 0 0 16px 2px rgba(155, 52, 24, 0.08); }
+}
+
 /* ---- Reveal Animation (applied via JS) ---- */
 .reveal {
   opacity: 0;
   transform: translateY(36px) scale(0.97);
-  filter: blur(6px);
+  filter: blur(4px);
   transition:
     opacity 0.8s var(--ease-out),
     transform 0.8s var(--ease-out),
@@ -96,7 +83,6 @@
   filter: blur(0);
 }
 
-/* directional variants */
 .reveal--left {
   transform: translateX(-40px) scale(0.97);
 }
@@ -129,15 +115,6 @@
 .reveal-stagger > .reveal:nth-child(5) { transition-delay: 400ms; }
 .reveal-stagger > .reveal:nth-child(6) { transition-delay: 500ms; }
 
-/* ---- Orb Animations ---- */
-.hero-orb--1 {
-  animation: orbFloat 20s ease-in-out infinite;
-}
-
-.hero-orb--2 {
-  animation: orbFloat 25s ease-in-out infinite reverse;
-}
-
 /* ---- Dot Animations ---- */
 .about-image-dot--1 {
   animation: dotFloat 4s ease-in-out infinite;
@@ -152,31 +129,6 @@
   transition: background 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
 }
 
-/* ---- Gradient border animation on service cards ---- */
-.service-card::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: 17px;
-  padding: 1px;
-  background: var(--gradient);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  opacity: 0;
-  transition: opacity 0.4s var(--ease-out);
-  pointer-events: none;
-}
-
-.service-card {
-  position: relative;
-}
-
-.service-card:hover::before {
-  opacity: 1;
-}
-
 /* ---- Nav link underline animation ---- */
 .nav-link::after {
   content: '';
@@ -184,9 +136,8 @@
   bottom: 4px;
   left: 50%;
   width: 0;
-  height: 2px;
-  background: var(--gradient);
-  border-radius: 2px;
+  height: 1px;
+  background: var(--ink);
   transition: width 0.3s var(--ease-out), left 0.3s var(--ease-out);
 }
 
@@ -196,32 +147,18 @@
   left: calc(50% - 10px);
 }
 
-/* ---- Skill tag hover glow ---- */
-.skill-tag:hover {
-  box-shadow: 0 0 16px rgba(96, 165, 250, 0.08);
-}
-
-/* ---- Project card image zoom ---- */
-.project-image-placeholder {
-  transition: transform 0.6s var(--ease-out);
-}
-
-.project-card:hover .project-image-placeholder {
-  transform: scale(1.05);
-}
-
 /* ---- Timeline marker pulse on hover ---- */
 .timeline-item:hover .timeline-marker {
-  animation: pulseGlow 2s ease-in-out infinite;
+  animation: pulsePigment 2s ease-in-out infinite;
 }
 
-/* ---- Social link magnetic effect ---- */
+/* ---- Social link hover ---- */
 .social-link {
-  transition: all 0.3s var(--ease-spring);
+  transition: color 0.3s var(--ease-out);
 }
 
 .social-link:hover {
-  transform: translateY(-3px) scale(1.05);
+  color: var(--pigment);
 }
 
 /* ---- Button press ---- */
@@ -230,12 +167,8 @@
 }
 
 /* ---- Logo hover ---- */
-.nav-logo .logo-dot {
-  transition: color 0.3s var(--ease-out);
-}
-
 .nav-logo:hover .logo-dot {
-  color: var(--accent-1);
+  color: var(--ink);
 }
 
 /* ---- Smooth anchor scroll indicator ---- */
@@ -249,8 +182,6 @@
 }
 
 .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
-.hero-content > *:nth-child(2) { animation-delay: 0.2s; }
-.hero-content > *:nth-child(3) { animation-delay: 0.4s; }
-.hero-content > *:nth-child(4) { animation-delay: 0.5s; }
-.hero-content > *:nth-child(5) { animation-delay: 0.6s; }
-.hero-content > *:nth-child(6) { animation-delay: 0.8s; }
+.hero-content > *:nth-child(2) { animation-delay: 0.25s; }
+.hero-content > *:nth-child(3) { animation-delay: 0.45s; }
+.hero-content > *:nth-child(4) { animation-delay: 0.6s; }

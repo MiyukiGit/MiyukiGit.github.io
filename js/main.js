@@ -277,6 +277,64 @@
     });
   });
 
+  /* ---- Theme toggle ---- */
+  var themeToggle = document.getElementById('theme-toggle');
+  var savedTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+
+  themeToggle.addEventListener('click', function () {
+    var current = document.documentElement.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+
+  /* ---- Stacking cards scroll effect ----
+     Each .stack-card is position:sticky with a per-card top offset
+     (--i * 14px), so the next card scrolls up and covers the previous
+     one like a deck. Here we scale/dim the covered card for depth. */
+  var stackCards = document.querySelectorAll('.stack-card');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (stackCards.length > 1 && !reduceMotion) {
+    var stackTicking = false;
+
+    function updateStackCards() {
+      var vh = window.innerHeight;
+
+      for (var i = 0; i < stackCards.length - 1; i++) {
+        var card = stackCards[i];
+        var next = stackCards[i + 1];
+        var nextRect = next.getBoundingClientRect();
+        var nextStickTop = parseFloat(getComputedStyle(next).top) || 0;
+
+        /* progress: 0 = next card entering viewport bottom,
+                     1 = next card fully stuck over this card */
+        var progress = (vh - nextRect.top) / (vh - nextStickTop);
+        progress = Math.max(0, Math.min(1, progress));
+
+        card.style.transform = 'scale(' + (1 - progress * 0.05).toFixed(4) + ')';
+        card.style.filter = 'brightness(' + (1 - progress * 0.35).toFixed(4) + ')';
+      }
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!stackTicking) {
+        requestAnimationFrame(function () {
+          updateStackCards();
+          stackTicking = false;
+        });
+        stackTicking = true;
+      }
+    }, { passive: true });
+
+    window.addEventListener('resize', function () {
+      requestAnimationFrame(updateStackCards);
+    });
+
+    updateStackCards();
+  }
+
   /* ---- Keyboard: close menu on Escape ---- */
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && navMenu.classList.contains('open')) {

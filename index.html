@@ -12,11 +12,11 @@
   <meta property="og:description" content="Student & Aspiring Software Engineer building systems that keep complex things in order.">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#06070a">
+  <meta name="theme-color" content="#E7E3DA">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/animations.css">
@@ -29,13 +29,8 @@
   <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-container">
       <a href="#hero" class="nav-logo" aria-label="Affif Wafi — Home">
-        <span class="logo-bracket">&lt;</span>Affif<span class="logo-dot">.</span><span class="logo-bracket">/&gt;</span>
+        Affif<span class="logo-dot">.</span>
       </a>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-      </button>
       <ul class="nav-menu" id="nav-menu" role="menubar">
         <li><a href="#about" class="nav-link" role="menuitem">About</a></li>
         <li><a href="#skills" class="nav-link" role="menuitem">Skills</a></li>
@@ -43,6 +38,17 @@
         <li><a href="#experience" class="nav-link" role="menuitem">Experience</a></li>
         <li><a href="#contact" class="nav-link nav-link--cta" role="menuitem">Contact</a></li>
       </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <svg class="theme-toggle-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="theme-toggle-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -50,43 +56,23 @@
 
     <!-- HERO -->
     <section class="hero" id="hero">
-      <div class="hero-bg">
-        <video class="bg-video" autoplay muted loop playsinline>
-          <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260809_012548_ef22562c-c0ae-4816-ad9d-f8922af4e6a7.mp4" type="video/mp4" />
-        </video>
-        <div class="hero-orb hero-orb--1"></div>
-        <div class="hero-orb hero-orb--2"></div>
-        <div class="hero-grid"></div>
-      </div>
       <div class="hero-content reveal">
-        <p class="hero-greeting">Hello, I'm</p>
-        <h1 class="hero-name">Affif <span class="hero-name-accent">Ismail</span></h1>
-        <p class="hero-title">
+        <h1 class="hero-name">Affif <em class="hero-name-accent">Ismail</em></h1>
+        <p class="hero-role">
           <span class="typed-prefix">$</span>
           <span class="typed-text" id="typed-text"></span>
           <span class="typed-cursor">|</span>
         </p>
-        <p class="hero-description">
-          I build systems that keep complex things in order — from library catalogs to grocery checkouts, 
-          all written properly in C++. Currently pursuing Software Engineering at MMU.
-        </p>
         <div class="hero-cta">
-          <a href="#projects" class="btn btn--primary">
-            <span>View My Work</span>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 12l4-4-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
+          <a href="#projects" class="btn btn--primary">View My Work</a>
           <a href="#contact" class="btn btn--ghost">Contact Me</a>
         </div>
         <div class="hero-socials">
-          <a href="https://github.com/MiyukiGit" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-link">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/in/affif-wafi-118b2329a/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-link">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          </a>
-          <a href="mailto:affifwafi@gmail.com" aria-label="Email" class="social-link">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>
-          </a>
+          <a href="https://github.com/MiyukiGit" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-link">GitHub</a>
+          <span class="social-sep">/</span>
+          <a href="https://www.linkedin.com/in/affif-wafi-118b2329a/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-link">LinkedIn</a>
+          <span class="social-sep">/</span>
+          <a href="mailto:affifwafi@gmail.com" aria-label="Email" class="social-link">Email</a>
         </div>
       </div>
       <a href="#about" class="hero-scroll" aria-label="Scroll to about section">
@@ -106,7 +92,7 @@
           <div class="about-image reveal">
             <div class="about-image-wrapper">
               <div class="about-image-placeholder">
-                <img src="assets/profile.png" alt="Affif Wafi bin Ismail" style="width:100%;height:100%;object-fit:cover;border-radius:16px;">
+                <img src="assets/profile.png" alt="Affif Wafi bin Ismail" style="width:100%;height:100%;object-fit:cover;">
               </div>
               <div class="about-image-border"></div>
               <div class="about-image-dot about-image-dot--1"></div>
@@ -115,21 +101,24 @@
           </div>
           <div class="about-content reveal">
             <p class="about-text">
-              I'm <strong>Affif Wafi bin Ismail</strong>, a scholarship student studying towards a future in Software Engineering. What draws me to this field is a specific kind of problem: taking something messy — receipts, records, stock — and building a system that keeps it organized and correct.
+              I'm <strong>Affif Wafi bin Ismail</strong>, a scholarship student and aspiring software engineer. I'm drawn to technology because I enjoy taking messy or complicated problems and turning them into systems that are simple, structured, and useful.
             </p>
             <p class="about-text">
-              Most of what I've built so far is coursework, done properly rather than rushed — I'd rather understand the fundamentals of C++ deeply than skip ahead with shortcuts. I plan to continue this at Multimedia University, going deeper into both the software engineering and data science sides of the field.
+              During my time at Kolej MARA Kuala Nerang, I built a strong foundation in programming through coursework and personal projects, mainly working with C++ and Python. Since then, I've been exploring web and mobile development, AI, automation, and data visualisation through projects that solve practical, everyday problems. I don't just want my projects to <strong><em>'work'</em></strong>. I want to understand <strong><em>'why they work'</em></strong> and <strong><em>'how to build them'</em></strong> properly.
             </p>
             <p class="about-text">
-              What sets me apart is my commitment to learning the fundamentals properly before reaching for shortcuts. I don't just build features — I <em>solve problems</em>.
+              I'm now pursuing a Bachelor of Computer Science (Hons.) in Software Engineering at Multimedia University (MMU). I'm particularly interested in software engineering, data science, AI, and building practical applications that solve everyday problems.
+            </p>
+            <p class="about-text">
+              I'm still learning, experimenting, and breaking things along the way. But I believe in understanding the fundamentals rather than relying on shortcuts. <strong><em>I don't just want to build features. I want to understand the problem, find a solution, and build it properly.</em></strong>
             </p>
             <div class="about-stats glass">
               <div class="stat">
-                <span class="stat-number" data-target="3">0</span><span class="stat-suffix">+</span>
+                <span class="stat-number" data-target="4">0</span><span class="stat-suffix">+</span>
                 <span class="stat-label">Projects Completed</span>
               </div>
               <div class="stat">
-                <span class="stat-number" data-target="3">0</span><span class="stat-suffix">+</span>
+                <span class="stat-number" data-target="5">0</span><span class="stat-suffix">+</span>
                 <span class="stat-label">Programming Languages</span>
               </div>
               <div class="stat">
@@ -192,6 +181,27 @@
               <span class="skill-tag">Paired Development</span>
             </div>
           </div>
+          <div class="skill-category border-glow-card glass reveal">
+            <div class="skill-category-header">
+              <div class="skill-icon skill-icon--web">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+              </div>
+              <h3 class="skill-category-title">Web & App Development</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Swift</span>
+              <span class="skill-tag">SwiftUI</span>
+              <span class="skill-tag">SwiftData</span>
+              <span class="skill-tag">JavaScript (ES6+)</span>
+              <span class="skill-tag">Java</span>
+              <span class="skill-tag">Android SDK</span>
+              <span class="skill-tag">HTML & CSS</span>
+              <span class="skill-tag">IndexedDB</span>
+              <span class="skill-tag">PWA</span>
+              <span class="skill-tag">Canvas API</span>
+              <span class="skill-tag">Service Workers</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -201,68 +211,83 @@
       <div class="container">
         <div class="section-header reveal">
           <span class="section-tag">&lt;projects&gt;</span>
-          <h2 class="section-title">Featured Projects</h2>
-          <p class="section-subtitle">Coursework projects, built to actually work — not just pass a demo.</p>
+          <div class="projects-header-row">
+            <div class="projects-header-text">
+              <h2 class="section-title">Selected Work</h2>
+              <p class="section-subtitle">Coursework and personal projects, built to actually work — not just pass a demo.</p>
+            </div>
+            <a href="https://github.com/MiyukiGit" target="_blank" rel="noopener noreferrer" class="btn btn--outline projects-more-btn">View More Projects <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
         </div>
-        <div class="projects-grid reveal-stagger">
-          <!-- Project 1 -->
-          <article class="project-card border-glow-card glass reveal">
-            <div class="project-image">
-              <div class="project-image-placeholder project-image--1">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-              </div>
-              <div class="project-overlay">
-                <a href="https://github.com/MiyukiGit" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View source code">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                </a>
+
+        <div class="stack-cards reveal">
+          <!-- Project 1 — AI Expense Tracker -->
+          <article class="stack-card" style="--i:0">
+            <div class="stack-card-image">
+              <img src="assets/ai-expense-tracker.png" alt="AI Expense Tracker screenshot" class="project-image-placeholder project-image--featured" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="project-image-placeholder project-image--1" style="display:none">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
               </div>
             </div>
-            <div class="project-info">
+            <div class="stack-card-body">
+              <span class="stack-card-index">01</span>
+              <h3 class="project-name">AI Expense Tracker</h3>
+              <p class="project-description">A cross-platform personal finance app designed to make expense tracking simple and effortless. It includes a Web PWA built with vanilla JavaScript, an Android version using Java/WebView, and an iOS app currently being developed with SwiftUI. Users can log expenses naturally using AI, which automatically identifies the amount, merchant, and category. The app also includes smart merchant matching, an AI chat assistant, budget tracking with spending projections, and custom interactive charts. On Android, it can even detect bank notifications from 14+ Malaysian banks and automatically turn them into expense records.</p>
+              <div class="project-tech">
+                <span>Swift</span><span>SwiftUI</span><span>SwiftData</span><span>Vanilla JS</span><span>IndexedDB</span><span>PWA</span><span>Java</span><span>Android WebView</span><span>Canvas 2D</span>
+              </div>
+              <a href="https://github.com/MiyukiGit" target="_blank" rel="noopener noreferrer" class="project-view-link">View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </article>
+          <!-- Project 2 -->
+          <article class="stack-card" style="--i:1">
+            <div class="stack-card-image">
+              <div class="project-image-placeholder project-image--2">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+            </div>
+            <div class="stack-card-body">
+              <span class="stack-card-index">02</span>
               <h3 class="project-name">PipiNiq Grocery</h3>
               <p class="project-description">A grocery management system built in C++ for coursework, developed with a partner. Handles item records, checkout, and receipt generation end to end.</p>
               <div class="project-tech">
                 <span>C++</span><span>iomanip</span><span>ofstream</span><span>File I/O</span>
               </div>
+              <a href="https://github.com/MiyukiGit" target="_blank" rel="noopener noreferrer" class="project-view-link">View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </div>
           </article>
-          <!-- Project 2 -->
-          <article class="project-card border-glow-card glass reveal">
-            <div class="project-image">
+          <!-- Project 3 -->
+          <article class="stack-card" style="--i:2">
+            <div class="stack-card-image">
               <div class="project-image-placeholder project-image--2">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
-              </div>
-              <div class="project-overlay">
-                <a href="https://github.com/MiyukiGit" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View source code">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                </a>
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
               </div>
             </div>
-            <div class="project-info">
+            <div class="stack-card-body">
+              <span class="stack-card-index">03</span>
               <h3 class="project-name">Library Management System</h3>
               <p class="project-description">A C++ system for managing a library's catalog and lending records — tracking what's held, what's checked out, and keeping that state consistent as records change.</p>
               <div class="project-tech">
                 <span>C++</span><span>File I/O</span><span>Data Management</span>
               </div>
+              <a href="https://github.com/MiyukiGit" target="_blank" rel="noopener noreferrer" class="project-view-link">View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </div>
           </article>
-          <!-- Project 3 -->
-          <article class="project-card border-glow-card glass reveal">
-            <div class="project-image">
+          <!-- Project 4 -->
+          <article class="stack-card" style="--i:3">
+            <div class="stack-card-image">
               <div class="project-image-placeholder project-image--3">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
-              </div>
-              <div class="project-overlay">
-                <a href="https://github.com/MiyukiGit" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View source code">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                </a>
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
               </div>
             </div>
-            <div class="project-info">
+            <div class="stack-card-body">
+              <span class="stack-card-index">04</span>
               <h3 class="project-name">ATM System</h3>
               <p class="project-description">A simulated ATM system in C++ handling account management, balance inquiries, deposits, and withdrawals with input validation and transaction logging.</p>
               <div class="project-tech">
                 <span>C++</span><span>OOP</span><span>File I/O</span>
               </div>
+              <a href="https://github.com/MiyukiGit" target="_blank" rel="noopener noreferrer" class="project-view-link">View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </div>
           </article>
         </div>
@@ -444,7 +469,7 @@
     <div class="container footer-inner">
       <div class="footer-brand">
         <a href="#hero" class="nav-logo">
-          <span class="logo-bracket">&lt;</span>Affif<span class="logo-dot">.</span><span class="logo-bracket">/&gt;</span>
+          Affif<span class="logo-dot">.</span>
         </a>
         <p class="footer-tagline">Building digital experiences, one line at a time.</p>
       </div>
