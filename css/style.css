@@ -1221,7 +1221,16 @@ html:not([data-theme]) .theme-toggle-sun { display: block; }
   .stack-card-image {
     flex: none;
     min-height: 0;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 2 / 3;
+    max-height: 420px;
+  }
+
+  .stack-card-image .project-image-placeholder.project-image--featured {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
   }
 
   .stack-card-body {
