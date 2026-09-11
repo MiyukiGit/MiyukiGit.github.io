@@ -649,6 +649,68 @@ strong {
   color: var(--ink);
 }
 
+/* ---- Skills list (rows + chips) ---- */
+.skills-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+}
+
+.skill-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 24px;
+  padding: 20px 0;
+  border-top: 1px solid var(--hairline);
+  transition: background var(--transition-fast);
+}
+
+.skill-row:last-child {
+  border-bottom: 1px solid var(--hairline);
+}
+
+.skill-row:hover {
+  background: var(--bg-elevated);
+}
+
+.skill-row dt {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  padding-top: 3px;
+}
+
+.skill-row dd {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+}
+
+.skill-chip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  padding: 5px 12px;
+  border: 1px solid var(--hairline);
+  color: var(--ink-muted);
+  transition: border-color var(--transition-fast),
+              color var(--transition-fast);
+}
+
+.skill-row:hover .skill-chip {
+  border-color: var(--hairline-strong);
+  color: var(--ink);
+}
+
+.skill-chip--strong {
+  border-color: var(--pigment);
+  color: var(--pigment);
+}
+
 /* ---- Projects ---- */
 .project-image-placeholder {
   width: 100%;
@@ -1128,6 +1190,13 @@ html:not([data-theme]) .theme-toggle-sun { display: block; }
 }
 
 @media (max-width: 768px) {
+  .skill-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 768px) {
   :root {
     --section-gap: 64px;
     --nav-height: 64px;
@@ -1414,6 +1483,29 @@ html:not([data-theme]) .theme-toggle-sun { display: block; }
 [data-theme="dark"] .skill-tag:hover {
   color: #E7E3DA;
   border-color: rgba(231, 227, 218, 0.18);
+}
+
+[data-theme="dark"] .skill-row:hover {
+  background: #242320;
+}
+
+[data-theme="dark"] .skill-row dt {
+  color: #E7E3DA;
+}
+
+[data-theme="dark"] .skill-chip {
+  color: #6E6A61;
+  border-color: rgba(231, 227, 218, 0.10);
+}
+
+[data-theme="dark"] .skill-row:hover .skill-chip {
+  color: #E7E3DA;
+  border-color: rgba(231, 227, 218, 0.18);
+}
+
+[data-theme="dark"] .skill-chip--strong {
+  border-color: #C4492A;
+  color: #C4492A;
 }
 
 [data-theme="dark"] .project-card {
